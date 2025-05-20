@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE EMBS Quiz Challenge - Leaderboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+        <div class="particles"></div>
+        <div class="floating-icons">
+            <i class="fas fa-trophy"></i>
+            <i class="fas fa-medal"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-crown"></i>
+            <i class="fas fa-award"></i>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="leaderboard-container">
+        <!-- Header Section -->
+        <header class="leaderboard-header">
+            <h1 class="glowing-title">Live Leaderboard</h1>
+            <p class="leaderboard-subtitle">Real-time Rankings & Team CryptCoins</p>
+            <div class="header-decoration">
+                <span class="line"></span>
+                <i class="fas fa-trophy"></i>
+                <span class="line"></span>
+            </div>
+        </header>
+
+        <!-- Leaderboard Section -->
+        <section class="leaderboard-section">
+            <!-- Desktop Table View -->
+            <div class="leaderboard-table-container">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th class="rank-header">Rank</th>
+                            <th class="team-header">Team</th>
+                            <th class="score-header">CryptCoins</th>
+                            <th class="time-header">Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <!-- Leaderboard entries will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mobile Cards View -->
+            <div class="leaderboard-cards" id="leaderboardCards">
+                <!-- Mobile cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Loading leaderboard...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state" id="errorState" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <p>Unable to load leaderboard. Please try again.</p>
+            </div>
+
+            <!-- Refresh Button -->
+            <button class="refresh-button" id="refreshButton">
+                <i class="fas fa-sync-alt"></i>
+                <span>Refresh Leaderboard</span>
+                <div class="button-glow"></div>
+            </button>
+        </section>
+
+        <!-- Back to Home -->
+        <a href="index.html" class="back-home-button">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+        </a>
+    </main>
+
+    <!-- Firebase Scripts -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js"></script>
+    <script type="module" src="js/leaderboard.js"></script>
+
+    <script>
+        // Add floating animation to icons
+        document.addEventListener('DOMContentLoaded', () => {
+            const icons = document.querySelectorAll('.floating-icons i');
+            icons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html> 

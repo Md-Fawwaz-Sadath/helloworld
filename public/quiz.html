@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMBS Quiz Competition</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-content">
+                <h1>EMBS Quiz Competition</h1>
+                <p>Test your knowledge in Biomedical Engineering</p>
+                <button id="start-quiz-btn" class="glow-button">
+                    <span>Start Quiz</span>
+                    <i class="fas fa-rocket"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Team Name Modal -->
+        <div id="team-name-modal" class="modal">
+            <div class="modal-content">
+                <h2>Enter Your Team Name</h2>
+                <form id="team-name-form">
+                    <div class="form-group">
+                        <input type="text" id="team-name-input" required 
+                               placeholder="Enter your team name" 
+                               maxlength="50"
+                               autocomplete="off">
+                        <div id="team-name-error" class="error-message"></div>
+                    </div>
+                    <button type="submit" class="glow-button">
+                        Start Quiz
+                        <i class="fas fa-rocket"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Question Selection Grid -->
+        <div id="question-grid" class="screen">
+            <div class="grid-header">
+                <h2>Select Your Questions</h2>
+            </div>
+            <div class="question-cards-grid" id="question-cards">
+                <!-- Question cards will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="question-screen" class="screen">
+            <div class="question-content">
+                <div class="question-meta-row">
+                    <div class="question-type-indicator">
+                        <span id="difficulty-badge-placeholder"></span>
+                    </div>
+                    <div class="score-display">
+                        <span class="cryptcoin-emoji" aria-label="coin">🪙</span>
+                        <div class="cryptcoins-info">
+                            <span class="cryptcoins-label">CryptCoins</span>
+                            <span id="current-score" class="cryptcoins-value">0</span>
+                        </div>
+                    </div>
+                </div>
+                <h3 id="question-text"></h3>
+                <div id="options-container" class="options-grid"></div>
+            </div>
+
+            <div class="question-footer">
+                <button id="next-btn" class="action-button">
+                    Next Question
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button id="submit-quiz-btn" class="action-button submit-button">
+                    Submit Quiz
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Team Submission Screen -->
+        <div id="team-submission" class="screen">
+            <div class="submission-content">
+                <h2>Quiz Completed!</h2>
+                <div class="final-score">
+                    <span>Your CryptCoins: </span>
+                    <span id="final-score">0</span>
+                </div>
+                <form id="team-form" class="team-form">
+                    <div class="form-group">
+                        <label for="team-name">Enter Team Name</label>
+                        <input type="text" id="team-name" required 
+                               placeholder="e.g., Team Alpha" 
+                               maxlength="50">
+                    </div>
+                    <button type="submit" class="submit-button">
+                        Submit CryptCoins
+                        <i class="fas fa-trophy"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Submission Status Screen -->
+        <div id="submission-status" class="screen">
+            <div class="status-content">
+                <i class="fas fa-check-circle status-icon"></i>
+                <p id="status-message"></p>
+                <a href="leaderboard.html" class="view-leaderboard-btn">
+                    View Leaderboard
+                    <i class="fas fa-chart-line"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/quiz.js"></script>
+</body>
+</html> 

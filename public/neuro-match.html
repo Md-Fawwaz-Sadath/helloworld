@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuro Match - Bonus Round</title>
+    <link rel="stylesheet" href="css/neuro-match.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>
+                🎯 You've Unlocked a Bonus Round: Neuro Match
+                <span>🧠 Match the brain regions to continue your mission</span>
+            </h1>
+            <p>Drag the correct brain region to its place to continue your mission...</p>
+        </header>
+
+        <div class="game-area">
+            <div class="brain-section">
+                <img src="images/brain-regions.svg" alt="Brain Regions" id="brain-image">
+            </div>
+            
+            <div class="labels-section">
+                <h2>Brain Regions</h2>
+                <div id="labels-container" class="labels-container">
+                    <!-- Labels will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="success-message" class="success-message">
+            <div class="message-content">
+                <i class="fas fa-brain"></i>
+                <h2>Mission Complete!</h2>
+                <p>All brain regions have been correctly identified.</p>
+                <div class="reward-message">
+                    <i class="fas fa-coins"></i>
+                    <span>+300 CryptCoins</span>
+                </div>
+                <button id="continue-quiz-btn" class="glow-button">
+                    <i class="fas fa-arrow-right"></i>
+                    Continue Mission
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="js/neuro-match.js"></script>
+</body>
+</html> 

@@ -1,0 +1,47 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isValidTeamName(teamName) {
+      return teamName.matches('^[a-zA-Z0-9\\s-]{3,50}$');
+    }
+    
+    function isValidScore(score) {
+      return score is number && score >= 0;
+    }
+    
+    function isValidTimestamp(timestamp) {
+      return timestamp is timestamp;
+    }
+    
+    function isValidQuestionIndex(index) {
+      return index is number && index >= 0 && index <= 20;
+    }
+    
+    function isValidAttempts(attempts) {
+      return attempts is number && attempts > 0;
+    }
+    
+    // Leaderboard collection rules
+    match /leaderboard/{teamName} {
+      // Allow reading leaderboard entries
+      allow read: if true;
+      
+      // Allow creating and updating team entries
+      allow create, update: if true;
+      
+      // Prevent deletion
+      allow delete: if false;
+    }
+    
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 

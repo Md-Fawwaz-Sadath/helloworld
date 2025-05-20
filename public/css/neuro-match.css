@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --primary-color: #4a90e2;
+    --success-color: #00ff9d;
+    --error-color: #ff2d55;
+    --background-start: #0f0c29;
+    --background-mid: #302b63;
+    --background-end: #24243e;
+    --text-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --glow-color: rgba(74, 144, 226, 0.5);
+    --neon-glow: 0 0 10px rgba(0, 255, 157, 0.5),
+                 0 0 20px rgba(0, 255, 157, 0.3),
+                 0 0 30px rgba(0, 255, 157, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Share Tech Mono', monospace;
+    background: linear-gradient(135deg, var(--background-start), var(--background-mid), var(--background-end));
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.03),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(45deg, #00ff9d, #4a90e2, #ff2d55);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientText 5s ease infinite;
+    text-shadow: var(--neon-glow);
+}
+
+header h1 span {
+    display: block;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+    color: var(--text-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 0 0 5px rgba(0, 255, 157, 0.3);
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.game-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    flex: 1;
+}
+
+.brain-section {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#brain-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px var(--glow-color));
+}
+
+.labels-section {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--card-border);
+}
+
+.labels-section h2 {
+    margin-bottom: 1.5rem;
+    color: var(--success-color);
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    text-shadow: var(--neon-glow);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.labels-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: var(--success-color);
+    box-shadow: var(--neon-glow);
+}
+
+.labels-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.draggable-label {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    cursor: move;
+    user-select: none;
+    transition: all var(--transition-speed);
+    backdrop-filter: blur(5px);
+    color: var(--text-color);
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 0 0 5px rgba(0, 255, 157, 0.3);
+}
+
+.draggable-label::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.draggable-label:hover {
+    transform: translateY(-2px) rotate(1deg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 10px rgba(0, 255, 157, 0.3);
+    border-color: var(--success-color);
+}
+
+.draggable-label:hover::before {
+    transform: translateX(100%);
+}
+
+.draggable-label.dragging {
+    opacity: 0.8;
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 0 20px var(--glow-color);
+    border-color: var(--success-color);
+}
+
+.drop-zone {
+    position: absolute;
+    border: 2px dashed var(--primary-color);
+    border-radius: var(--border-radius);
+    background: rgba(74, 144, 226, 0.1);
+    transition: all var(--transition-speed);
+    backdrop-filter: blur(5px);
+}
+
+.drop-zone.highlight {
+    background: rgba(74, 144, 226, 0.2);
+    border-style: solid;
+    box-shadow: 0 0 20px var(--glow-color);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(74, 144, 226, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(74, 144, 226, 0);
+    }
+}
+
+.drop-zone.correct {
+    border-color: var(--success-color);
+    background: rgba(0, 255, 157, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+    animation: correctMatch 0.5s ease-out;
+}
+
+@keyframes correctMatch {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.drop-zone.incorrect {
+    border-color: var(--error-color);
+    background: rgba(255, 45, 85, 0.1);
+    box-shadow: 0 0 20px rgba(255, 45, 85, 0.5);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.success-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.success-message.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.message-content {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    max-width: 400px;
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.message-content i {
+    font-size: 4rem;
+    color: var(--success-color);
+    margin-bottom: 1.5rem;
+    animation: bounce 1s infinite;
+    text-shadow: var(--neon-glow);
+}
+
+.glow-button {
+    background: linear-gradient(45deg, var(--primary-color), #6ab7ff);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all var(--transition-speed);
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.glow-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4),
+                0 0 10px rgba(0, 255, 157, 0.3);
+}
+
+.glow-button:active {
+    transform: translateY(0);
+}
+
+.success-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--success-color);
+    font-size: 1.5rem;
+    animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1001;
+}
+
+.error-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--error-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    z-index: 1000;
+    animation: slideDown 0.3s ease-out;
+    backdrop-filter: blur(5px);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.reward-message {
+    background: rgba(0, 255, 157, 0.1);
+    border: 1px solid var(--success-color);
+    border-radius: var(--border-radius);
+    padding: 1rem 2rem;
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    animation: rewardPulse 2s infinite;
+}
+
+.reward-message i {
+    color: var(--success-color);
+    font-size: 1.5rem;
+    animation: coinSpin 2s infinite;
+}
+
+.reward-message span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--success-color);
+    text-shadow: var(--neon-glow);
+}
+
+@keyframes rewardPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 157, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 157, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 157, 0);
+    }
+}
+
+@keyframes coinSpin {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1001;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--success-color);
+    opacity: 0.8;
+    animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 1rem;
+    }
+    
+    .game-area {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .brain-section {
+        min-height: 300px;
+    }
+    
+    header {
+        padding: 1rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    header h1 span {
+        font-size: 1.4rem;
+    }
+    
+    .labels-section {
+        padding: 1rem;
+    }
+    
+    .message-content {
+        padding: 2rem;
+        margin: 1rem;
+    }
+} 

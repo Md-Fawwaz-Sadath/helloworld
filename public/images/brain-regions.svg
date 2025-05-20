@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Brain Outline -->
+    <path d="M400,100 C500,100 600,200 600,300 C600,400 500,500 400,500 C300,500 200,400 200,300 C200,200 300,100 400,100" 
+          fill="none" stroke="#333" stroke-width="3"/>
+    
+    <!-- Frontal Lobe Region -->
+    <path d="M400,100 C500,100 600,200 600,300 C600,350 500,400 400,400 C300,400 200,350 200,300 C200,200 300,100 400,100" 
+          fill="none" stroke="#4a90e2" stroke-width="3" stroke-dasharray="8,8" id="frontal-lobe"/>
+    
+    <!-- Parietal Lobe Region -->
+    <path d="M400,200 C500,200 600,250 600,300 C600,350 500,400 400,400 C300,400 200,350 200,300 C200,250 300,200 400,200" 
+          fill="none" stroke="#4a90e2" stroke-width="3" stroke-dasharray="8,8" id="parietal-lobe"/>
+    
+    <!-- Temporal Lobe Region -->
+    <path d="M200,300 C250,300 300,350 300,400 C300,450 250,500 200,500 C150,500 100,450 100,400 C100,350 150,300 200,300" 
+          fill="none" stroke="#4a90e2" stroke-width="3" stroke-dasharray="8,8" id="temporal-lobe"/>
+    
+    <!-- Occipital Lobe Region -->
+    <path d="M600,300 C550,300 500,350 500,400 C500,450 550,500 600,500 C650,500 700,450 700,400 C700,350 650,300 600,300" 
+          fill="none" stroke="#4a90e2" stroke-width="3" stroke-dasharray="8,8" id="occipital-lobe"/>
+    
+    <!-- Cerebellum Region -->
+    <path d="M400,400 C450,400 500,450 500,500 C500,550 450,600 400,600 C350,600 300,550 300,500 C300,450 350,400 400,400" 
+          fill="none" stroke="#4a90e2" stroke-width="3" stroke-dasharray="8,8" id="cerebellum"/>
+</svg> 
